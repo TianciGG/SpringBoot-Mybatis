@@ -10,7 +10,7 @@ import chauncy.service.UserService;
 @Service
 public class UserService{
 	
-	@Autowired
+/*	@Autowired
 	private UserMapper userMapper;
 	
 	@Transactional
@@ -18,5 +18,5 @@ public class UserService{
 		int insertUserFlag = userMapper.insertUser(name, age);
 		int i=1/0;
 		return insertUserFlag;
-	}
+	}*/
 }

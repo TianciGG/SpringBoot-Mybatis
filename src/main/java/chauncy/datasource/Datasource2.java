@@ -16,32 +16,31 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 /**   
- * @classDesc: 功能描述(数据源1的配置)  
+ * @classDesc: 功能描述(数据源2的配置)  
  * @author: ChauncyWang
  * @createTime: 2019年5月22日 下午3:15:05   
  * @version: 1.0  
  */ 
 @Configuration // 注册到spring容器中
-@MapperScan(basePackages="chauncy.test01",sqlSessionFactoryRef="test1SqlSessionFactory")
-public class Datasource1 {
+@MapperScan(basePackages="chauncy.test02",sqlSessionFactoryRef="test2SqlSessionFactory")
+public class Datasource2 {
 	
 	/**   
-	 * @methodDesc: 功能描述(配置test1数据库)  
+	 * @methodDesc: 功能描述(配置test2数据库)  
 	 * @author: ChauncyWang
 	 * @param: @return   
 	 * @createTime: 2019年5月22日 下午3:18:11   
 	 * @returnType: DataSource  
 	 */  
-	@Bean(name = "test1DataSource")
-	@Primary
-	@ConfigurationProperties(prefix = "spring.datasource.test1")
+	@Bean(name = "test2DataSource")
+	@ConfigurationProperties(prefix = "spring.datasource.test2")
 	public DataSource testDataSource() {
 		return DataSourceBuilder.create().build();
 	}
 
 	
 	/**   
-	 * @methodDesc: 功能描述(test1 sql会话工厂)  
+	 * @methodDesc: 功能描述(test2 sql会话工厂)  
 	 * @author: ChauncyWang
 	 * @param: @param dataSource
 	 * @param: @return
@@ -49,35 +48,33 @@ public class Datasource1 {
 	 * @createTime: 2019年5月22日 下午3:18:45   
 	 * @returnType: SqlSessionFactory  
 	 */  
-	@Bean(name = "test1SqlSessionFactory")
-	@Primary
-	public SqlSessionFactory testSqlSessionFactory(@Qualifier("test1DataSource") DataSource dataSource)
+	@Bean(name = "test2SqlSessionFactory")
+	public SqlSessionFactory testSqlSessionFactory(@Qualifier("test2DataSource") DataSource dataSource)
 			throws Exception {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dataSource);
 //		bean.setMapperLocations(
-//				new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/test1/*.xml"));
+//				new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/test2/*.xml"));
 		return bean.getObject();
 	}
 
 
 	/**   
-	 * @methodDesc: 功能描述(test1 事物管理)  
+	 * @methodDesc: 功能描述(test2 事物管理)  
 	 * @author: ChauncyWang
 	 * @param: @param dataSource
 	 * @param: @return   
 	 * @createTime: 2019年5月22日 下午3:19:09   
 	 * @returnType: DataSourceTransactionManager  
 	 */  
-	@Bean(name = "test1TransactionManager")
-	@Primary
-	public DataSourceTransactionManager testTransactionManager(@Qualifier("test1DataSource") DataSource dataSource) {
+	@Bean(name = "test2TransactionManager")
+	public DataSourceTransactionManager testTransactionManager(@Qualifier("test2DataSource") DataSource dataSource) {
 		return new DataSourceTransactionManager(dataSource);
 	}
 
-	@Bean(name = "test1SqlSessionTemplate")
+	@Bean(name = "test2SqlSessionTemplate")
 	public SqlSessionTemplate testSqlSessionTemplate(
-			@Qualifier("test1SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+			@Qualifier("test2SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 
