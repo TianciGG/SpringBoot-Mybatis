@@ -47,5 +47,11 @@ public class IndexController {
 		userService2.addUser(name, age);
 		return "success";
 	}
+	
+	@RequestMapping("/addUser1AndUser2")
+	public String addUser1AndUser2(){
+		userService1.addUser1AndUser2();
+		return "success";
+	}
 
 }
