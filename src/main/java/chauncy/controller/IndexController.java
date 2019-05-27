@@ -1,5 +1,6 @@
 package chauncy.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import chauncy.test02.service.UserService2;
 @RestController
 @RequestMapping("/IndexController")
 public class IndexController {
+	
+	private static Logger logger = Logger.getLogger(IndexController.class);
 
 	@Autowired
 	private UserService1 userService1;
@@ -53,5 +56,15 @@ public class IndexController {
 		userService1.addUser1AndUser2();
 		return "success";
 	}
-
+	
+	@RequestMapping("/log")
+	public String log(){
+		logger.info("test log");
+		return "success";
+	}
+	
+	@RequestMapping("/addUserName")
+	public String addUserName(String name){
+		return "success";
+	}
 }
