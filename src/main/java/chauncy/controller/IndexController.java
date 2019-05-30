@@ -2,6 +2,7 @@ package chauncy.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import chauncy.entity.UserEntity;
 import chauncy.mapper.UserMapper;
 import chauncy.service.UserService;
+import chauncy.test01.mapper.UserMapper1;
 import chauncy.test01.service.UserService1;
 import chauncy.test02.service.UserService2;
 
@@ -24,6 +26,12 @@ public class IndexController {
 
 	@Autowired
 	private UserService2 userService2;
+	
+	@Autowired
+	private UserMapper1 userMapper1;
+	
+	@Autowired
+	private CacheManager cacheManager;
 
 	/*@Autowired
 	private UserMapper userMapper;
@@ -67,4 +75,16 @@ public class IndexController {
 	public String addUserName(String name){
 		return "success";
 	}
+	
+	@RequestMapping("/getUserName")
+	public UserEntity getUserName(String name){
+		return userMapper1.findByUserName(name);
+	}
+	
+	@RequestMapping("/removeCache")
+	public String removeCache() {
+		cacheManager.getCache("baseCache").clear();
+		return "success";
+	}
+
 }
