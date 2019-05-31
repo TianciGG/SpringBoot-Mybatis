@@ -1,2 +1,2 @@
 # SpringBoot-Mybatis
-SpringBoot-Mybatisb为：1.使用SpringBoot整合使用Mybatis，简单框架搭建使用示例。2.SpringBoot整合Mybatis事务管理。3.SpringBoot整合多数据源。4.多数据源事务管理问题。5.使用springboot+jta+atomikos解决多数据源事务管理问题。5.日志管理之使用log4j记录日志&使用AOP统一处理Web请求日志。6.缓存管理之EhCache使用。
+SpringBoot-Mybatisb为：1.使用SpringBoot整合使用Mybatis，简单框架搭建使用示例。2.SpringBoot整合Mybatis事务管理。3.SpringBoot整合多数据源。4.多数据源事务管理问题。5.使用springboot+jta+atomikos解决多数据源事务管理问题。5.日志管理之使用log4j记录日志&使用AOP统一处理Web请求日志。6.缓存管理之EhCache使用。7.使用@Scheduled创建定时任务。
