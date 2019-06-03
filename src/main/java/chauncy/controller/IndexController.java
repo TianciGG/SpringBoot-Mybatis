@@ -86,5 +86,12 @@ public class IndexController {
 		cacheManager.getCache("baseCache").clear();
 		return "success";
 	}
-
+	
+	@RequestMapping("/sendSms")
+	public String sendSms(){
+		System.out.println("userService1->sendSms()开始调用");
+		userService1.sendSms();
+		System.out.println("userService1->sendSms()结束调用");
+		return "success";
+	}
 }

@@ -2,6 +2,7 @@ package chauncy.test01.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,5 +29,20 @@ public class UserService1 {
 		userMapper2.addUser("test02", 19);
 		int i=1/0;
 		return 0;
+	}
+	
+	//当一个方法执行时间比较长，就要使用多线程
+	@Async
+	public void sendSms(){
+		System.out.println("sendSms()方法开始执行。。。");
+		for (int i = 0; i < 5; i++) {
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println("i:"+i);
+		}
+		System.out.println("sendSms()方法结束执行。。。");
 	}
 }
