@@ -2,6 +2,7 @@ package chauncy.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,9 @@ public class IndexController {
 	
 	@Autowired
 	private CacheManager cacheManager;
+	
+	@Value("${name}")
+	private String name;
 
 	/*@Autowired
 	private UserMapper userMapper;
@@ -93,5 +97,10 @@ public class IndexController {
 		userService1.sendSms();
 		System.out.println("userService1->sendSms()结束调用");
 		return "success";
+	}
+	
+	@RequestMapping("/getName")
+	public String getName(){
+		return name;
 	}
 }
